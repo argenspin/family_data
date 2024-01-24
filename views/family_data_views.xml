@@ -87,11 +87,21 @@
         sequence="1"
         groups="group_family_admin" /> -->
 
+    <record id="hr.open_view_employee_list_my" model="ir.actions.act_window">
+        <field name="name">Noor Family</field>
+        <field name="res_model">hr.employee</field>
+        <field name="view_mode">kanban,tree,form,activity</field>
+        <field name="domain">[]</field>
+        <field name="context">{'chat_icon': True}</field>
+        <field name="view_id" eval="False"/>
+        <field name="search_view_id" ref="hr.view_employee_filter"/>
+    </record>
+
 
     <record id="open_view_parents_list_only_view" model="ir.actions.act_window">
         <field name="name">Noor Family</field>
         <field name="res_model">hr.employee</field>
-        <field name="view_mode">kanban,tree,form</field>
+        <field name="view_mode">kanban,form,tree</field>
         <field name="domain">[]</field>
         <field name="context">{'chat_icon': True, 'create': False, 'delete': False} </field>
         <field name="view_id" eval="False"/>
