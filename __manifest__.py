@@ -2,7 +2,7 @@
     'name': "Family Data",
     'author': 'Datasoup',
     'version': "16.0.1.0",
-    'depends': ['base','hr','hr_recruitment'],
+    'depends': ['base','hr'],
     'data': [
         'security/groups.xml',
         'security/ir.model.access.csv',
