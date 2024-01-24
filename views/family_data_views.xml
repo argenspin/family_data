@@ -91,7 +91,7 @@
     <record id="open_view_parents_list_only_view" model="ir.actions.act_window">
         <field name="name">Noor Family</field>
         <field name="res_model">hr.employee</field>
-        <field name="view_mode">kanban,tree</field>
+        <field name="view_mode">kanban,tree,form</field>
         <field name="domain">[]</field>
         <field name="context">{'chat_icon': True, 'create': False, 'delete': False} </field>
         <field name="view_id" eval="False"/>
