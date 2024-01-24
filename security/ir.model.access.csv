@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+
+access_family_data_admin,access_family_data_admin,model_family_data,family_data.group_family_admin,1,1,1,1
+access_family_data_user,access_family_data_user,model_family_data,family_data.group_family_user,1,1,1,1
+
+access_family_data_line,access_family_data_line,model_family_data_line,base.group_user,1,1,1,1

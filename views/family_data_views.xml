@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- <record model="ir.actions.act_window" id="family_data_action">
+        <field name="name">Family Data</field>
+        <field name="res_model">family.data</field>
+        <field name="view_mode">form</field>
+    </record>
+
+    <record model="ir.actions.act_window" id="family_data_action_all">
+        <field name="name">Family Data All</field>
+        <field name="res_model">family.data</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+
+    <record id="family_data_form" model="ir.ui.view">
+        <field name="name">family.data.form</field>
+        <field name="model">family.data</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                    </group>
+                    <notebook>
+                        <page string="Family Members">
+                            <field name="line_ids">
+                                <tree>
+                                    <field name="family_data_id" invisible="1"/>
+                                    <field name="name"/>
+                                    <field name="father_name"/>
+                                    <field name="mother_name"/>
+                                    <field name="spouse_name"/>
+                                    <field name="email"/>
+                                    <field name="address"/>
+                                    <field name="dob"/>
+                                    <field name="education"/>
+                                    <field name="job"/>
+                                    <field name="late_members"/>
+                                    <field name="other_info"/>
+
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="family_data_line_form" model="ir.ui.view">
+        <field name="name">family.data.line.form</field>
+        <field name="model">family.data.line</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="family_data_id" invisible="1"/>
+                        <field name="name"/>
+                        <field name="father_name"/>
+                        <field name="mother_name"/>
+                        <field name="spouse_name"/>
+
+                        <field name="email"/>
+                        <field name="address"/>
+                        <field name="dob"/>
+                        <field name="education"/>
+                        <field name="job"/>
+                        <field name="late_members"/>
+                        <field name="other_info"/>
+                    </group>
+                </sheet>
+
+            </form>
+        </field>
+    </record>
+    <menuitem id="menu_family_data"
+        name="Family Data"
+        action="family_data_action"
+        web_icon="datasoup_expenses,static/description/icon.png"
+        sequence="1" />
+
+    <menuitem id="menu_family_data_all"
+        name="Family Data All"
+        action="family_data_action_all"
+        web_icon="datasoup_expenses,static/description/icon.png"
+        sequence="1"
+        groups="group_family_admin" /> -->
+
+
+    <record id="open_view_parents_list_only_view" model="ir.actions.act_window">
+        <field name="name">Noor Family</field>
+        <field name="res_model">hr.employee</field>
+        <field name="view_mode">kanban,tree</field>
+        <field name="domain">[]</field>
+        <field name="context">{'chat_icon': True, 'create': False, 'delete': False} </field>
+        <field name="view_id" eval="False"/>
+        <field name="search_view_id" ref="hr.view_employee_filter"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+            Add a new employee
+            </p><p>
+            With just a quick glance on the Odoo employee screen, you
+            can easily find all the information you need for each person;
+            contact data, job position, availability, etc.
+            </p>
+        </field>
+    </record>
+
+    <record id="hr.hr_department_view_kanban" model="ir.ui.view" >
+        <field name="name">hr.department.kanban</field>
+        <field name="model">hr.department</field>
+        <field name="arch" type="xml">
+            <kanban class="oe_background_grey o_kanban_dashboard o_hr_department_kanban o_kanban_small_column" sample="1">
+                <field name="name"/>
+                <field name="company_id"/>
+                <field name="manager_id"/>
+                <field name="color"/>
+                <field name="total_employee"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div t-attf-class="#{!selection_mode ? kanban_color(record.color.raw_value) : ''}">
+                            <div t-attf-class="o_kanban_card_header">
+                                <div class="o_kanban_card_header_title">
+                                    <div class="o_primary"><a type="edit"><field name="name"/></a></div>
+                                    <div class="o_secondary" groups="base.group_multi_company">
+                                        <small>
+                                            <i class="fa fa-building-o" role="img" aria-label="Company" title="Company"/> <field name="company_id"/>
+                                        </small>
+                                    </div>
+                                </div>
+                                <div class="o_kanban_manage_button_section" t-if="!selection_mode">
+                                    <a class="o_kanban_manage_toggle_button" href="#"><i class="fa fa-ellipsis-v" role="img" aria-label="Manage" title="Manage"/></a>
+                                </div>
+                            </div>
+                            <div class="container o_kanban_card_content" t-if="!selection_mode">
+                                <div class="row o_kanban_card_upper_content">
+                                    <div class="col-6 o_kanban_primary_left">
+                                        <button class="btn btn-primary" name="%(hr.act_employee_from_department)d" type="action">
+                                            <t t-out="record.total_employee.raw_value"/> Members
+                                        </button>
+                                    </div>
+                                    <div class="col-6 o_kanban_primary_right">
+                                    </div>
+                                </div>
+                                <div class="o_kanban_card_lower_content"
+                                     style="justify-content: end">
+                                    <!-- placeholder for bottom content -->
+                                </div>
+                            </div>
+                            <div class="o_kanban_card_manage_pane dropdown-menu" role="menu">
+                                <div class="o_kanban_card_manage_section">
+                                    <div role="menuitem" class="o_kanban_manage_reports">
+                                        <div class="o_kanban_card_manage_title ps-4 pb-1">
+                                            <span class="fw-bolder">Reporting</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a t-if="widget.editable" role="menuitem" class="dropdown-item" type="edit">Configuration</a>
+                                <ul t-if="widget.editable" class="oe_kanban_colorpicker" data-field="color" role="menu"/>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+
+    <record id="hr_department_kanban_action" model="ir.actions.act_window">
+        <field name="name">Parents</field>
+        <field name="res_model">hr.department</field>
+        <field name="view_mode">kanban,tree,form</field>
+        <field name="search_view_id" ref="hr.view_department_filter"/>
+    </record>
+    <record id="hr.hr_department_tree_action" model="ir.actions.act_window">
+        <field name="name">Parents</field>
+        <field name="res_model">hr.department</field>
+        <field name="view_mode">tree,form,kanban</field>
+        <field name="search_view_id" ref="hr.view_department_filter"/>
+    </record>
+
+
+    <menuitem
+    id="hr.menu_hr_root"
+    name="Noor Family"
+    groups="hr.group_hr_manager"
+    web_icon="hr,static/description/icon.svg"
+    sequence="185"/>
+
+    <menuitem
+    id="hr.menu_hr_employee_payroll"
+    name="Noor Family"
+    parent="hr.menu_hr_root"
+    groups="hr.group_hr_manager"
+    sequence="3"/>
+
+    <menuitem
+        id="hr.menu_hr_employee_user"
+        name="Noor Family"
+        action="hr.open_view_employee_list_my"
+        parent="hr.menu_hr_employee_payroll"
+        sequence="1"/>
+
+    <menuitem
+        id="hr.menu_hr_department_kanban"
+        action="hr_department_kanban_action"
+        parent="hr.menu_hr_root"
+        groups="hr.group_hr_user"/>
+
+
+    <menuitem id="family_members_view_only"
+        name="Noor Family"
+        action="open_view_parents_list_only_view"
+        sequence="4"
+        groups="family_data.group_family_user"/>
+</odoo>
