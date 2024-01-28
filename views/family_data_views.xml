@@ -103,7 +103,7 @@
         <field name="res_model">hr.employee</field>
         <field name="view_mode">kanban,tree</field>
         <field name="domain">[]</field>
-        <field name="context">{'chat_icon': False, 'create': False, 'delete': False, 'edit': False, 'search_default_group_department':1} </field>
+        <field name="context">{'chat_icon': False, 'create': False, 'delete': False, 'edit': False,} </field>
         <field name="view_id" eval="False"/>
         <field name="search_view_id" ref="hr.view_employee_filter"/>
     </record>
