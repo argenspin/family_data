@@ -9,6 +9,10 @@
         'views/family_data_views.xml',
     ],
     'demo': [],
+    'assets': {
+    'web.assets_backend': [
+        'family_data/static/src/scss/styles.scss',
+    ]},
     'summary': "family Data",
     'description': "",
     'installable': True,
